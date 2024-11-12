@@ -16,13 +16,32 @@
             <div id="clock"></div>
         </div>
         <div class="main">
-           
+            <div class="widget">
+                <div class="notepad">
+                    <textarea id="note-area" name="message" rows="20" cols="40"></textarea>
+                    <p><button id="saveNoteBtn">Save</button></p>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            try {
+                var loadNotes = localStorage.getItem("notes");
+            } catch(err) {
+                var loadNotes = "Enter your notes here and click 'Save'";
+            }
+
+            $("#note-area").val(loadNotes);
+
+            $("#saveNoteBtn").click(function(){
+                var currentNotes = $("#note-area").val();
+                localStorage.setItem("notes", currentNotes);    
+            });
+        });
+
+    </script>
+
 </body>
-
-<script>
-
-</script>
 </html>
-
